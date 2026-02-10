@@ -1,13 +1,10 @@
-import React from "react";
-import "./App.css";
-
-const apiUrl = process.env.REACT_APP_API_URL;
+import React from 'react';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Frontend Demo on SAP BTP</h1>
-      <p>Current API URL: {apiUrl}</p>
+    <div>
+      <h1>Hello SAP BTP HTML5!</h1>
+      <p>Your React app is ready to deploy.</p>
     </div>
   );
 }
