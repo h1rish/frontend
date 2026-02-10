@@ -1,0 +1,28 @@
+version: v2
+
+stages:
+  - name: Build
+    jobs:
+      - name: BuildFrontend
+        type: Build
+        tasks:
+          - name: InstallDependencies
+            type: npm
+            commands:
+              - npm install
+          - name: BuildApp
+            type: npm
+            commands:
+              - npm run build
+
+  - name: Deploy
+    jobs:
+      - name: DeployToHTML5Repo
+        type: Deploy
+        tasks:
+          - name: UploadToHTML5
+            type: HTML5AppDeploy
+            inputs:
+              appName: MyFrontendApp
+              appPath: build
+              xsAppJson: xs-app.json
