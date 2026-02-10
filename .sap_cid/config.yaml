@@ -1,29 +1,17 @@
-projectName: my-frontend-app
+schema-version: "2.0"
 
 stages:
   build:
     buildTool: npm
-    buildToolVersion: N20   # Allowed Node version
-    commands:
-      - npm ci
-      - npm run build
-    artifacts:
-      - dist/**             # Only build artifacts here
+    buildToolVersion: N20   # use N12/N14/N16/N18/N20/N22
+
+  acceptance:
+    approval: none          # can also be 'manual' if needed
 
   release:
-    - name: deploy
-      type: deployToHtml5Repo
-      service: my-html5-repo-connection
-      credentials: my-html5-repo-key
+    deploy: true            # deploy to Cloud Foundry if configured
 
-  # Optional: unit tests (if you want them)
-  test:
-    commands:
-      - npm test
-
-  # Optional: security or malware scan (if your org uses it)
-  security:
-    commands:
-      - echo "Run malware scan here"
-
-# No unsupported keys like acceptance.approval or targets
+# Optional: service connection to your repo
+services:
+  my-html5-repo-connection:
+    token: my-html5-repo-key
