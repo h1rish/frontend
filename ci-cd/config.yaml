@@ -28,9 +28,9 @@ projects:
       - name: html5
         type: html5-apps-repo
         config:
-          host: https://<your-subaccount-region>.hana.ondemand.com
-          account: <subaccount-id>
-          repository: react-apps
+          host: https://api.cf.us10-001.hana.ondemand.com
+          account: 5165EF59-178F-4B04-A5AC-229A95C09693
+          repository: myhtml5repo
           application-name: my-react-app
           version: 1.0.${PIPELINE_ID}
           target: dev
