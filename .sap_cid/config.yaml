@@ -1,24 +1,37 @@
+version: '1.0'
+
 stages:
-
+  # Stage 1: Install Node dependencies
   install:
-    type: npm
-    buildTool: npm
-    buildToolVersion: 9.8.1   # example; use your Node/npm version
-    commands:
-      - install
+    type: build
+    buildTool: N20
+    buildToolVersion: N20
+    description: "Install npm dependencies"
+    steps:
+      - name: Install dependencies
+        script: |
+          echo "Installing npm dependencies..."
+          npm install
 
+  # Stage 2: Build React App
   build:
-    type: npm
-    buildTool: npm
-    buildToolVersion: 9.8.1
-    commands:
-      - run build             # generates /build folder
+    type: build
+    buildTool: N20
+    buildToolVersion: N20
+    description: "Build React frontend artifacts"
+    steps:
+      - name: Build
+        script: |
+          echo "Building React app..."
+          npm run build
 
+  # Stage 3: Deploy to HTML5 Repository
   deploy-html5:
     type: html5-deploy
-    service: my-html5-repo-key   # service connection created in BTP
-    appName: my-react-app
-    sourcePath: build
+    description: "Deploy React App to HTML5 Repository"
+    service: my-html5-repo-key    # <-- your HTML5 repo service key
+    appName: frontend         # name in HTML5 repo
+    sourcePath: build             # React build folder
     envVars:
       REACT_APP_API_ENDPOINT: ${API_ENDPOINT}
-      REACT_APP_OTHER_VAR: ${OTHER_VAR}
+      REACT_APP_OTHER_VAR: ${OTHER_ENV_VAR}
