@@ -3,27 +3,15 @@ version: "1.0"
 stages:
   build:
     buildTool: npm
-    buildToolVersion: N18
-    commands:
-      - npm install
-      - npm run build
-    artifacts:
-      - path: build  # React build output
+    buildToolVersion: MBTJ18N16
+    appName: frontend-app
+    parameters:
+      buildDir: build
 
-  acceptance:
-    # No approval key allowed; keep empty if you want
-    commands: []
+  acceptance: {}  # leave empty if no acceptance stage
 
   release:
-    deploy:
-      service: my-html5-repo-key   # your HTML5 repo service key
-      path: build                  # folder to deploy
-      appName: react-frontend-app  # your deployed app name
-
-settings:
-  build:
-    env:
-      NODE_ENV: production
-  deploy:
-    env:
-      REACT_APP_API: https://your-api-endpoint.com  # optional
+    targets:
+      - name: html5-repo
+        service: my-html5-repo-key
+        path: build
