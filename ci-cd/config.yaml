@@ -1,0 +1,36 @@
+version: 1.0
+projects:
+  - name: my-react-app
+    type: html5
+    path: .
+    build:
+      commands:
+        - echo "=== Setting environment variables ==="
+        # Inject env variables from pipeline config
+        - export REACT_APP_API_URL=${API_URL}
+        - export REACT_APP_ENV=${ENVIRONMENT}
+
+        - echo "=== Installing dependencies ==="
+        - npm install
+
+        - echo "=== Building React app ==="
+        - npm run build
+
+        - echo "=== Dockerizing frontend (optional) ==="
+        - docker build -t my-react-app:${PIPELINE_ID} .
+
+        - echo "=== Pushing Docker image to SAP BTP Container Registry (optional) ==="
+        - docker login ${CONTAINER_REGISTRY_HOST} -u ${REGISTRY_USER} -p ${REGISTRY_PASSWORD}
+        - docker tag my-react-app:${PIPELINE_ID} ${CONTAINER_REGISTRY_HOST}/my-react-app:${PIPELINE_ID}
+        - docker push ${CONTAINER_REGISTRY_HOST}/my-react-app:${PIPELINE_ID}
+
+    deploy:
+      - name: html5
+        type: html5-apps-repo
+        config:
+          host: https://<your-subaccount-region>.hana.ondemand.com
+          account: <subaccount-id>
+          repository: react-apps
+          application-name: my-react-app
+          version: 1.0.${PIPELINE_ID}
+          target: dev
