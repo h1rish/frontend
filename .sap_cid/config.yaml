@@ -4,26 +4,21 @@ stages:
   build:
     buildTool: npm
     buildToolVersion: N18
-    targets:
-      - name: frontend
-        type: html5
-        path: build   # React build folder
-        config:
-          appName: react-frontend-app
-          service: my-html5-repo-key  # Your HTML5 service key
-          apiEndpoint: https://your-api-endpoint.com  # Optional env variable for your app
-          deployTarget: html5
+    commands:
+      - npm install
+      - npm run build
+    artifacts:
+      - path: build  # React build output
 
   acceptance:
-    approval:
-      required: false
+    # No approval key allowed; keep empty if you want
+    commands: []
 
   release:
-    targets:
-      - name: frontend
-        type: html5
-        service: my-html5-repo-key
-        deployTarget: html5
+    deploy:
+      service: my-html5-repo-key   # your HTML5 repo service key
+      path: build                  # folder to deploy
+      appName: react-frontend-app  # your deployed app name
 
 settings:
   build:
@@ -31,4 +26,4 @@ settings:
       NODE_ENV: production
   deploy:
     env:
-      REACT_APP_API: ${apiEndpoint}  # Optional, pass env vars to app
+      REACT_APP_API: https://your-api-endpoint.com  # optional
