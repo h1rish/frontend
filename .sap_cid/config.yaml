@@ -1,35 +1,21 @@
-version: 1.0
-projects:
-  - name: my-react-app
-    type: html5
-    path: .                 # root of repo, contains package.json
-    build:
-      commands:
-        - echo "=== Setting environment variables ==="
-        - export REACT_APP_API_URL=${API_URL}
-        - export REACT_APP_ENV=${ENVIRONMENT}
+stages:
+  - name: Build
+    steps:
+      - name: Build React App
+        type: npm
+        config:
+          install: true        # runs 'npm install'
+          build: true          # runs 'npm run build'
+          working_dir: app     # folder containing package.json
 
-        - echo "=== Installing dependencies ==="
-        - npm install
-
-        - echo "=== Building React app ==="
-        - npm run build
-
-        - echo "=== Dockerizing frontend (optional) ==="
-        - docker build -t my-react-app:${PIPELINE_ID} .
-
-        - echo "=== Pushing Docker image (optional) ==="
-        - docker login ${CONTAINER_REGISTRY_HOST} -u ${REGISTRY_USER} -p ${REGISTRY_PASSWORD}
-        - docker tag my-react-app:${PIPELINE_ID} ${CONTAINER_REGISTRY_HOST}/my-react-app:${PIPELINE_ID}
-        - docker push ${CONTAINER_REGISTRY_HOST}/my-react-app:${PIPELINE_ID}
-
-    deploy:
-      - name: html5
+  - name: Deploy
+    steps:
+      - name: Deploy to HTML5
         type: html5-apps-repo
         config:
-          host: https://<your-subaccount-region>.hana.ondemand.com
-          account: <subaccount-id>
-          repository: frontend            # <-- your HTML5 repo
-          application-name: my-react-app
-          version: 1.0.${PIPELINE_ID}
-          target: dev
+          host: https://api.cf.us10-001.hana.ondemand.com
+          account: 5165EF59-178F-4B04-A5AC-229A95C09693  # your Subaccount ID
+          repository: myhtml5repo                        # your HTML5 repo
+          application-name: my-react-app                # app name in BTP
+          version: 1.0.${PIPELINE_ID}                  # automatic versioning
+          target: dev                                   # deployment target
