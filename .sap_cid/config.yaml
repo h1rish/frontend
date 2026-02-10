@@ -1,19 +1,12 @@
 version: v2
 
 stages:
-  build:                  # MUST be lowercase
-    jobs:
-      build-frontend:     # job name, lowercase + hyphen
-        type: build
-        tasks:
-          install-dependencies:
-            type: npm
-            commands:
-              - npm install
-          build-app:
-            type: npm
-            commands:
-              - npm run build
+  build:
+    buildTool: npm
+    buildToolVersion: 18
+    commands:
+      - npm install
+      - npm run build
 
   deploy:
     jobs:
