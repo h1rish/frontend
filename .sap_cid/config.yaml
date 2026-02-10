@@ -1,5 +1,7 @@
 stages:
   build:
+    buildTool: npm
+    buildToolVersion: "8.0.0"
     steps:
       - name: Build React App
         type: npm
