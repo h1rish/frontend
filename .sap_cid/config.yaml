@@ -4,3 +4,12 @@ stages:
   build:
     buildTool: npm
     buildToolVersion: N18
+    commands:
+      - npm install
+      - npm run build
+
+  release:
+    type: release
+    parameters:
+      packagePath: build
+      packageName: demo-frontend-app.zip
