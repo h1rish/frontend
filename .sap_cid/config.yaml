@@ -1,7 +1,7 @@
 stages:
   build:
     buildTool: npm
-    buildToolVersion: N20
+    buildToolVersion: N22
     steps:
       - name: Build React App
         type: npm
