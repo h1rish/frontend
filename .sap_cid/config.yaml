@@ -4,9 +4,6 @@ stages:
   build:
     buildTool: npm
     buildToolVersion: N18
-    commands:
-      - npm install
-      - npm run build
 
   deploy:
     jobs:
@@ -16,6 +13,6 @@ stages:
           upload-html5:
             type: HTML5AppDeploy
             inputs:
-              appName: MyFrontendApp
+              appName: my-frontend-app   # Your app name
               appPath: build
               xsAppJson: xs-app.json
