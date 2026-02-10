@@ -1,0 +1,10 @@
+{
+  "welcomeFile": "/index.html",
+  "routes": [
+    {
+      "source": "^/api/(.*)$",
+      "target": "https://myapi.example.com/$1",
+      "authenticationType": "none"
+    }
+  ]
+}
