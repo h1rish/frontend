@@ -1,41 +1,23 @@
 version: '1.0'
 
-stages:
-  - name: install
-    steps:
-      - name: Install Dependencies
-        type: npm-install
-        inputs:
-          workingDirectory: ./   # root folder of your React app
+pipeline:
 
-  - name: build
-    steps:
-      - name: Build React App
-        type: custom
-        script:
-          - npm run build       # React outputs /build folder
+  install:
+    type: npm-install
+    inputs:
+      workingDirectory: ./   # root folder of your React app
 
-  - name: containerize
-    steps:
-      - name: Build Docker Image
-        type: docker-build
-        inputs:
-          dockerfile: Dockerfile
-          imageName: ${DOCKER_REGISTRY}/react-app:latest
+  build:
+    type: custom
+    script:
+      - npm run build        # React build outputs /build folder
 
-      - name: Push Docker Image
-        type: docker-push
-        inputs:
-          imageName: ${DOCKER_REGISTRY}/react-app:latest
-
-  - name: deploy-html5
-    steps:
-      - name: Deploy to HTML5 Repository
-        type: html5-deploy
-        inputs:
-          appName: my-react-app
-          sourcePath: build
-          service: my-html5-repo-connection   # your service connection name
-          envVars:
-            REACT_APP_API_ENDPOINT: ${API_ENDPOINT}
-            REACT_APP_OTHER_VAR: ${OTHER_VAR}
+  deploy-html5:
+    type: html5-deploy
+    inputs:
+      appName: my-react-app
+      sourcePath: build
+      service: my-html5-repo-connection   # your service connection name
+      envVars:
+        REACT_APP_API_ENDPOINT: ${API_ENDPOINT}
+        REACT_APP_OTHER_VAR: ${OTHER_VAR}
