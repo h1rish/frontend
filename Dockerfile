@@ -1,21 +1,20 @@
-# Use official Node.js image
-FROM node:18-alpine
+# Use official Node image to build
+FROM node:18 AS build
 
-# Set working directory
 WORKDIR /app
 
-# Copy package.json and install dependencies
+# Copy package files
 COPY package*.json ./
 RUN npm install
 
-# Copy all source files
-COPY . .
+# Copy source code
+COPY . ./
 
-# Build frontend
+# Build React app
 RUN npm run build
 
-# Expose port (optional, for local demo)
-EXPOSE 5000
-
-# Serve the build folder
-CMD ["npx", "serve", "-s", "build", "-l", "5000"]
+# Stage 2: serve with nginx
+FROM nginx:alpine
+COPY --from=build /app/build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
