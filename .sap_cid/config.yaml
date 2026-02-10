@@ -17,7 +17,7 @@ pipeline:
     inputs:
       appName: my-react-app
       sourcePath: build
-      service: my-html5-repo-connection   # your service connection name
+      service: my-html5-repo-key   # your service connection name
       envVars:
         REACT_APP_API_ENDPOINT: ${API_ENDPOINT}
         REACT_APP_OTHER_VAR: ${OTHER_VAR}
