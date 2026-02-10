@@ -3,7 +3,7 @@ version: v2
 stages:
   build:
     buildTool: npm
-    buildToolVersion: 18
+    buildToolVersion: N18
     commands:
       - npm install
       - npm run build
