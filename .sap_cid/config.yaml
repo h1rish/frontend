@@ -1,17 +1,29 @@
-version: "1.0"
+projectName: my-frontend-app
 
 stages:
   build:
     buildTool: npm
-    buildToolVersion: MBTJ18N16
-    appName: frontend-app
-    parameters:
-      buildDir: build
-
-  acceptance: {}  # leave empty if no acceptance stage
+    buildToolVersion: N20   # Allowed Node version
+    commands:
+      - npm ci
+      - npm run build
+    artifacts:
+      - dist/**             # Only build artifacts here
 
   release:
-    targets:
-      - name: html5-repo
-        service: my-html5-repo-key
-        path: build
+    - name: deploy
+      type: deployToHtml5Repo
+      service: my-html5-repo-connection
+      credentials: my-html5-repo-key
+
+  # Optional: unit tests (if you want them)
+  test:
+    commands:
+      - npm test
+
+  # Optional: security or malware scan (if your org uses it)
+  security:
+    commands:
+      - echo "Run malware scan here"
+
+# No unsupported keys like acceptance.approval or targets
