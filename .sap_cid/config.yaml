@@ -1,15 +1,41 @@
-version: v2
+version: '1.0'
 
 stages:
-  build:
-    buildTool: npm
-    buildToolVersion: N18
-    commands:
-      - npm install
-      - npm run build
+  - name: install
+    steps:
+      - name: Install Dependencies
+        type: npm-install
+        inputs:
+          workingDirectory: ./   # root folder of your React app
 
-  release:
-    type: release
-    parameters:
-      packagePath: build
-      packageName: demo-frontend-app.zip
+  - name: build
+    steps:
+      - name: Build React App
+        type: custom
+        script:
+          - npm run build       # React outputs /build folder
+
+  - name: containerize
+    steps:
+      - name: Build Docker Image
+        type: docker-build
+        inputs:
+          dockerfile: Dockerfile
+          imageName: ${DOCKER_REGISTRY}/react-app:latest
+
+      - name: Push Docker Image
+        type: docker-push
+        inputs:
+          imageName: ${DOCKER_REGISTRY}/react-app:latest
+
+  - name: deploy-html5
+    steps:
+      - name: Deploy to HTML5 Repository
+        type: html5-deploy
+        inputs:
+          appName: my-react-app
+          sourcePath: build
+          service: my-html5-repo-connection   # your service connection name
+          envVars:
+            REACT_APP_API_ENDPOINT: ${API_ENDPOINT}
+            REACT_APP_OTHER_VAR: ${OTHER_VAR}
