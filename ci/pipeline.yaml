@@ -1,4 +1,3 @@
-version: v2
 stages:
   - name: Build
     jobs:
@@ -13,6 +12,17 @@ stages:
             type: npm
             commands:
               - npm run build
+
+  - name: Dockerize
+    jobs:
+      - name: BuildDockerImage
+        type: Build
+        tasks:
+          - name: DockerBuild
+            type: Shell
+            commands:
+              - docker build -t my-frontend-app .
+              - docker save my-frontend-app -o my-frontend-app.tar
 
   - name: Deploy
     jobs:
