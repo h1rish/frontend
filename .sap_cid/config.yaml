@@ -1,23 +1,27 @@
-version: '1.0'
-
-pipeline:
+stages:
 
   install:
-    type: npm-install
-    inputs:
-      workingDirectory: ./   # root folder of your React app
+    steps:
+      - name: Install dependencies
+        type: npm-install
+        inputs:
+          workingDirectory: ./   # root of React app
 
   build:
-    type: custom
-    script:
-      - npm run build        # React build outputs /build folder
+    steps:
+      - name: Build React app
+        type: custom
+        script:
+          - npm run build
 
   deploy-html5:
-    type: html5-deploy
-    inputs:
-      appName: my-react-app
-      sourcePath: build
-      service: my-html5-repo-key   # your service connection name
-      envVars:
-        REACT_APP_API_ENDPOINT: ${API_ENDPOINT}
-        REACT_APP_OTHER_VAR: ${OTHER_VAR}
+    steps:
+      - name: Deploy to HTML5 Repository
+        type: html5-deploy
+        inputs:
+          appName: my-react-app
+          sourcePath: build
+          service: my-html5-repo-key   # your service connection
+          envVars:
+            REACT_APP_API_ENDPOINT: ${API_ENDPOINT}
+            REACT_APP_OTHER_VAR: ${OTHER_VAR}
