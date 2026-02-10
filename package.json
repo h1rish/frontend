@@ -1,14 +1,16 @@
 {
-  "name": "my-frontend-app",
+  "name": "sample-ui5-app",
   "version": "1.0.0",
-  "private": true,
+  "description": "Sample SAP UI5 application",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build"
+    "start": "ui5 serve",
+    "build": "ui5 build --clean-dest"
   },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1"
+  "devDependencies": {
+    "@ui5/cli": "^3.3.3"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=16"
   }
 }
