@@ -1,5 +1,5 @@
 stages:
-  Build:
+  build:
     steps:
       - name: Build React App
         type: npm
@@ -8,7 +8,7 @@ stages:
           build: true
           working_dir: app
 
-  Deploy:
+  deploy:
     steps:
       - name: Deploy to HTML5
         type: html5-apps-repo
