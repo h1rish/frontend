@@ -1,26 +1,26 @@
 version: v2
 
 stages:
-  Build:
+  build:                  # MUST be lowercase
     jobs:
-      BuildFrontend:
-        type: Build
+      build-frontend:     # job name, lowercase + hyphen
+        type: build
         tasks:
-          InstallDependencies:
+          install-dependencies:
             type: npm
             commands:
               - npm install
-          BuildApp:
+          build-app:
             type: npm
             commands:
               - npm run build
 
-  Deploy:
+  deploy:
     jobs:
-      DeployToHTML5Repo:
-        type: Deploy
+      deploy-html5:
+        type: deploy
         tasks:
-          UploadToHTML5:
+          upload-html5:
             type: HTML5AppDeploy
             inputs:
               appName: MyFrontendApp
