@@ -1,6 +1,21 @@
+general:
+  buildTool: "mta"
+  productiveBranch: "main"
+
 stages:
-  build:
-    buildTool: npm
-    buildToolVersion: N20   # Valid values: N12, N14, N16, N18, N20, N22
-  deploy:
-    deployTool: cf
+  Build:
+    mavenExecuteStaticCodeChecks: false
+  Deploy:
+    cloudFoundryDeploy: true
+
+steps:
+  # Build MTA (reads mta.yaml)
+  mtaBuild:
+    buildTarget: "CF"
+
+  # Deploy using CF CLI credentials stored in SAP CI/CD
+  cloudFoundryDeploy:
+    cfApiEndpoint: "https://api.cf.us10-001.hana.ondemand.com/"
+    cfOrg: "ec4edb2ctrial"
+    cfSpace: "dev"
+    credentialsId: "sapcreds"
