@@ -1,9 +1,6 @@
 stages:
   build:
     buildTool: npm
-    buildToolVersion: N18   # Node.js 18
+    buildToolVersion: N18   # Valid values: N12, N14, N16, N18, N20, N22
   deploy:
-    deployTool: cf
-    deployToolVersion: latest
-    targets:
-      - html5Repo
+    deployTool: html5Repo
