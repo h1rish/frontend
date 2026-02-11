@@ -1,9 +1,8 @@
+---
 stages:
 
   build:
-    buildTool: "mta"
-    buildToolVersion: "latest"
-    npmInstall: true
+    buildTool: mta
 
   acceptance:
     cfDeploy:
@@ -11,5 +10,3 @@ stages:
       apiEndpoint: "https://api.cf.us10-001.hana.ondemand.com"
       org: "ec4edb2ctrial"
       space: "dev"
-      deployTool: "mtaDeployPlugin"
-      deployType: "standard"
