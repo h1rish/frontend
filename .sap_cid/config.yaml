@@ -1,7 +1,7 @@
 stages:
   build:
     buildTool: npm
-    buildToolVersion: 18
+    buildToolVersion: N22   # Node.js 18
     buildCommand: install && run build
   deploy:
     deployTool: cf
