@@ -7,7 +7,7 @@ stages:
 
   acceptance:
     cfDeploy:
-      credential: "sapcreds"
+      credential: "sapcreds"                            # must match CI/CD cred name
       apiEndpoint: "https://api.cf.us10-001.hana.ondemand.com"
       org: "ec4edb2ctrial"
       space: "dev"
