@@ -1,0 +1,23 @@
+ID: react-html5-sample
+_schema-version: "3.2"
+version: 1.0.0
+
+modules:
+
+  - name: react-app
+    type: html5
+    path: app
+    build-parameters:
+      builder: custom
+      commands:
+        - npm install
+        - npm run build
+      build-result: build
+
+resources:
+
+  - name: html5-repo
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
