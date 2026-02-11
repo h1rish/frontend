@@ -2,7 +2,8 @@
 stages:
 
   build:
-    buildTool: mta
+    buildTool: "mta"
+    buildToolVersion: "MBTJ21N22"
 
   acceptance:
     cfDeploy:
