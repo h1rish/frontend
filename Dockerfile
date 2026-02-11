@@ -1,19 +1,12 @@
-# Use official Node image to build
-FROM node:18 AS build
-
+# Build stage
+FROM node:18-alpine AS build
 WORKDIR /app
-
-# Copy package files
 COPY package*.json ./
 RUN npm install
-
-# Copy source code
-COPY . ./
-
-# Build React app
+COPY . .
 RUN npm run build
 
-# Stage 2: serve with nginx
+# Serve stage
 FROM nginx:alpine
 COPY --from=build /app/build /usr/share/nginx/html
 EXPOSE 80
