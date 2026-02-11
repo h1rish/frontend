@@ -1,22 +1,15 @@
-version: "1.0"
+stages:
 
-general:
-  buildTool: mta
-  productiveBranch: main
+  build:
+    buildTool: "mta"
+    buildToolVersion: "latest"
+    npmInstall: true
 
-build:
-  tasks:
-    - mtaBuild
-
-deploy:
-  tasks:
-    - cloudFoundryDeploy
-
-mtaBuild:
-  buildTarget: CF
-
-cloudFoundryDeploy:
-  cfApiEndpoint: "https://api.cf.us10-001.hana.ondemand.com"
-  cfOrg: "ec4edb2ctrial"
-  cfSpace: "dev"
-  credentialsId: "sapcreds"
+  acceptance:
+    cfDeploy:
+      credential: "cf-credentials"
+      apiEndpoint: "https://api.cf.us10-001.hana.ondemand.com"
+      org: "ec4edb2ctrial"
+      space: "dev"
+      deployTool: "mtaDeployPlugin"
+      deployType: "standard"
