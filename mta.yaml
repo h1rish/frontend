@@ -3,7 +3,6 @@ _schema-version: "3.2"
 version: 1.0.0
 
 modules:
-
   - name: react-app
     type: html5
     path: app
@@ -15,8 +14,7 @@ modules:
       build-result: build
 
 resources:
-
-  - name: html5-repo
+  - name: html5-apps-repo
     type: org.cloudfoundry.managed-service
     parameters:
       service: html5-apps-repo
