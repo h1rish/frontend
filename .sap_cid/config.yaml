@@ -1,23 +1,7 @@
 stages:
   build:
-    buildTool: npm
-    buildToolVersion: N22
-    steps:
-      - name: Build React App
-        type: npm
-        config:
-          install: true
-          build: true
-          working_dir: app
-
+    npmInstall: true
+    npmRunBuild: true
   deploy:
-    steps:
-      - name: Deploy to HTML5
-        type: html5-apps-repo
-        config:
-          host: https://api.cf.us10-001.hana.ondemand.com
-          account: 5165EF59-178F-4B04-A5AC-229A95C09693
-          repository: myhtml5repo
-          application-name: my-react-app
-          version: 1.0.${PIPELINE_ID}
-          target: dev
+    html5RepoDeploy: true
+
