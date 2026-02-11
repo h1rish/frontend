@@ -1,0 +1,9 @@
+---
+applications:
+  - name: myreactapp
+    memory: 128M
+    docker:
+      image: my-docker-registry/myreactapp:latest
+    env:
+      API_URL: https://api.mybackend.com
+      ENVIRONMENT: production
