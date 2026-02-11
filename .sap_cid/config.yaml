@@ -1,6 +1,6 @@
 stages:
   build:
     buildTool: npm
-    buildToolVersion: N18   # Valid values: N12, N14, N16, N18, N20, N22
+    buildToolVersion: N22   # Valid values: N12, N14, N16, N18, N20, N22
   deploy:
     deployTool: html5Repo
