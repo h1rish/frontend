@@ -1,7 +1,10 @@
 stages:
   build:
-    npmInstall: true
-    npmRunBuild: true
+    buildTool: npm
+    buildToolVersion: 18
+    buildCommand: install && run build
   deploy:
-    html5RepoDeploy: true
-
+    deployTool: cf
+    deployToolVersion: latest
+    targets:
+      - html5Repo
