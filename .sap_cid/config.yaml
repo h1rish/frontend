@@ -1,19 +1,19 @@
-general:
-  buildTool: mta
-  verbose: true
+version: "1.0"
 
 stages:
+
   build:
-    mtaBuild: true
+    buildTool: mta
+    buildToolVersion: "latest"
+    commands:
+      - npm install
+      - npm run build
+      - mbt build
 
   deploy:
-    cloudFoundryDeploy: true
-
-steps:
-  mtaBuild:
-    buildTarget: CF
-
-  cloudFoundryDeploy:
-    cfApiEndpoint: "https://api.cf.us10-001.hana.ondemand.com"
-    cfOrg: "ec4edb2ctrial"
-    cfSpace: "dev"
+    type: cloudFoundry
+    cloudFoundry:
+      apiEndpoint: "https://api.cf.us10-001.hana.ondemand.com"
+      org: "ec4edb2ctrial"
+      space: "dev"
+      deployType: mta
