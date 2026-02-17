@@ -1,11 +1,13 @@
-general:
-  buildTool: mta
+version: "1.0"
 
 stages:
+
   build:
-    mtaBuild: {}               # required key, even if empty
+    buildTool: mta
+    buildToolVersion: MBTJ11N18    # pick a valid MBT+Node combo
 
   deploy:
-    cloudFoundryDeploy:
-      connection: "sapcreds"  # your CI/CD credential
+    type: cloudFoundry
+    cloudFoundry:
+      connection: "sapcreds"       # your CI/CD credential
       deployType: mta
