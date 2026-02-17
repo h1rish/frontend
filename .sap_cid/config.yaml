@@ -4,7 +4,7 @@ stages:
 
   build:
     buildTool: mta
-    buildToolVersion: "latest"
+    buildToolVersion: MBTJ11N18   # <-- change this to a valid MBT version
     commands:
       - npm install
       - npm run build
@@ -13,7 +13,5 @@ stages:
   deploy:
     type: cloudFoundry
     cloudFoundry:
-      apiEndpoint: "https://api.cf.us10-001.hana.ondemand.com"
-      org: "ec4edb2ctrial"
-      space: "dev"
+      connection: "sapcreds"   # <-- your CI/CD credential name
       deployType: mta
