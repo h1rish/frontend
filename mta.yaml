@@ -17,7 +17,7 @@ modules:
     type: com.sap.application.content
     path: .
     requires:
-      - name: react-btp-app-html5-repo
+      - name: html5-apps-repo
         parameters:
           content-target: true
     build-parameters:
@@ -29,8 +29,7 @@ modules:
           target-path: resources/
 
 resources:
-  - name: react-btp-app-html5-repo
-    type: org.cloudfoundry.managed-service
+  - name: html5-apps-repo
+    type: org.cloudfoundry.existing-service
     parameters:
-      service: html5-apps-repo
-      service-plan: app-host
+      service-name: html5-apps-repo
