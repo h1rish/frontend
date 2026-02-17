@@ -1,6 +1,4 @@
-version: "1.0"
-
 stages:
   build:
     buildTool: npm
-    buildToolVersion: N20   # Node 18, pick from allowed list: N12, N14, N16, N18, N20, N22
+    buildToolVersion: N18   # pick from allowed Node versions: N12, N14, N16, N18, N20, N22
