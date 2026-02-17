@@ -1,13 +1,6 @@
 version: "1.0"
 
 stages:
-
   build:
     buildTool: mta
-    buildToolVersion: MBTJ11N18    # pick a valid MBT+Node combo
-
-  deploy:
-    type: cloudFoundry
-    cloudFoundry:
-      connection: "sapcreds"       # your CI/CD credential
-      deployType: mta
+    buildToolVersion: MBTJ11N18
