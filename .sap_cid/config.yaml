@@ -1,39 +1,13 @@
----
-stages:
+general:
+  buildTool: "mta"
+  verbose: true
 
-  build:
-    buildTool: "mta"
-    buildToolVersion: "MBTJ21N22"
-    env:
-      # Optional: pass any env vars your React build needs
-      REACT_APP_API_URL: "https://api.yourbackend.com"
-      REACT_APP_ENV: "dev"
+steps:
+  mtaBuild:
+    enabled: true
 
-  acceptance:
-    tasks:
-      - dockerBuild
-      - dockerPush
-      - cfDeploy
-
-dockerBuild:
-  # Docker image name — replace <region> and <namespace>
-  imageName: "registry.cf.<region>.ondemand.com/<namespace>/react-html5-app"
-  # Relative path to your Dockerfile
-  dockerfilePath: "app/Dockerfile"
-  # Build context (where to build from)
-  context: "./app"
-  tags:
-    - "latest"
-
-dockerPush:
-  credential: "Sapcreds"
-  registry: "registry.cf.<region>.ondemand.com"
-  imageName: "registry.cf.<region>.ondemand.com/<namespace>/react-html5-app"
-  tags:
-    - "latest"
-
-cfDeploy:
-  credential: "Sapcreds"
-  apiEndpoint: "https://api.cf.us10-001.hana.ondemand.com"
-  org: "ec4edb2ctrial"
-  space: "dev"
+  cloudFoundryDeploy:
+    enabled: true
+    cfApiEndpoint: "https://api.cf.us10-001.hana.ondemand.com/"
+    cfOrg: "ec4edb2ctrial"
+    cfSpace: "dev"
