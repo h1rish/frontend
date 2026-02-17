@@ -2,9 +2,10 @@ general:
   buildTool: mta
 
 stages:
-  build: {}                   # must be an object, even if empty
+  build:
+    mtaBuild: {}               # required key, even if empty
 
   deploy:
     cloudFoundryDeploy:
-      connection: "sapcreds"  # your saved CI/CD credential
+      connection: "sapcreds"  # your CI/CD credential
       deployType: mta
