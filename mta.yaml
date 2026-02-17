@@ -1,35 +1,9 @@
-_schema-version: "3.2"
 ID: react-btp-app
-version: 1.0.0
+_schema-version: 3.2
 
 modules:
-  - name: react-btp-app
+  - name: my-react-app    # just a module identifier
     type: html5
-    path: app
+    path: .               # root of your repo
     build-parameters:
-      builder: custom
-      commands:
-        - npm install
-        - npm run build
-      supported-platforms: []
-
-  - name: react-btp-app-deployer
-    type: com.sap.application.content
-    path: .
-    requires:
-      - name: html5-apps-repo
-        parameters:
-          content-target: true
-    build-parameters:
-      build-result: resources
-      requires:
-        - name: react-btp-app
-          artifacts:
-            - build/*
-          target-path: resources/
-
-resources:
-  - name: html5-apps-repo
-    type: org.cloudfoundry.existing-service
-    parameters:
-      service-name: html5-apps-repo
+      builder: npm
