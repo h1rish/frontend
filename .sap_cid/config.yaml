@@ -1,12 +1,28 @@
-stages:
-  Build:
-    mtaBuild: true
+schema-version: "2.1"
 
-  Deploy:
-    cloudFoundryDeploy: true
+pipelines:
+  branches:
+    main:
+      - name: build-and-deploy
+        jobs:
+          - build
+          - deploy
 
-steps:
-  cloudFoundryDeploy:
-    cfApiEndpoint: "https://api.cf.us10-001.hana.ondemand.com"
-    cfOrg: "ec4edb2ctrial"
-    cfSpace: "dev"
+jobs:
+  build:
+    name: Build
+    steps:
+      - mtaBuild:
+          builder: npm
+          builderConfig:
+            modules:
+              - name: react-btp-app
+
+  deploy:
+    name: Deploy to CF
+    steps:
+      - cloudFoundryDeploy:
+          cfApiEndpoint: "https://api.cf.us10-001.hana.ondemand.com"
+          cfOrg: "ec4edb2ctrial"
+          cfSpace: "dev"
+          deployType: mta
