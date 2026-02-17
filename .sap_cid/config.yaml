@@ -2,5 +2,5 @@ version: "1.0"
 
 stages:
   build:
-    buildTool: html5
-    buildToolVersion: MBTJ11N18
+    buildTool: npm
+    buildToolVersion: N20   # Node 18, pick from allowed list: N12, N14, N16, N18, N20, N22
