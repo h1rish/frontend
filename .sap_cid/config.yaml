@@ -2,5 +2,5 @@ version: "1.0"
 
 stages:
   build:
-    buildTool: mta
+    buildTool: html5
     buildToolVersion: MBTJ11N18
