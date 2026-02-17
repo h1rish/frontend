@@ -1,9 +1,0 @@
-ID: react-btp-app
-_schema-version: 3.2
-
-modules:
-  - name: my-react-app    # just a module identifier
-    type: html5
-    path: .               # root of your repo
-    build-parameters:
-      builder: npm
