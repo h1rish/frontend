@@ -2,7 +2,7 @@ stages:
   build:
     buildTool: npm
     buildToolVersion: N22
-
-  deploy:
     commands:
+      - npm install
+      - npm run build
       - cf html5-deploy --source build/ --target-id html5-apps-repo
