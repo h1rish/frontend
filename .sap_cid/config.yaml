@@ -1,17 +1,11 @@
-version: "1.0"
+general:
+  buildTool: mta
 
 stages:
-
-  install:
-    buildTool: npm
-    buildToolVersion: "9"          # Node version for npm dependencies
-
   build:
-    buildTool: mta
-    buildToolVersion: MBTJ11N18    # Valid MBT + Node version
+    # MTA build automatically reads mta.yaml
 
   deploy:
-    type: cloudFoundry
-    cloudFoundry:
-      connection: "sapcreds"       # <-- your CI/CD credential name
+    cloudFoundryDeploy:
+      connection: "sapcreds"  # Your CI/CD credential
       deployType: mta
