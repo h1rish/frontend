@@ -2,16 +2,16 @@ version: "1.0"
 
 stages:
 
+  install:
+    buildTool: npm
+    buildToolVersion: "9"          # Node version for npm dependencies
+
   build:
     buildTool: mta
-    buildToolVersion: MBTJ11N18   # <-- change this to a valid MBT version
-    commands:
-      - npm install
-      - npm run build
-      - mbt build
+    buildToolVersion: MBTJ11N18    # Valid MBT + Node version
 
   deploy:
     type: cloudFoundry
     cloudFoundry:
-      connection: "sapcreds"   # <-- your CI/CD credential name
+      connection: "sapcreds"       # <-- your CI/CD credential name
       deployType: mta
