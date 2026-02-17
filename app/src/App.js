@@ -1,20 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 function App() {
-  const [message, setMessage] = useState("Loading...");
-
-  useEffect(() => {
-    const apiURL = process.env.REACT_APP_API_URL || "/backend";
-    fetch(`${apiURL}/message`)
-      .then((res) => res.json())
-      .then((data) => setMessage(data.message))
-      .catch(() => setMessage("Backend not reachable"));
-  }, []);
-
   return (
-    <div style={{ fontFamily: "Arial", padding: "40px" }}>
-      <h1>SAP BTP React HTML5 Deployment</h1>
-      <p>{message}</p>
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h1>React App on SAP BTP</h1>
+      <p>Deployed using Native CI/CD to HTML5 Repo</p>
     </div>
   );
 }
