@@ -1,13 +1,12 @@
-general:
-  buildTool: "mta"
-  verbose: true
+stages:
+  Build:
+    mtaBuild: true
+
+  Deploy:
+    cloudFoundryDeploy: true
 
 steps:
-  mtaBuild:
-    enabled: true
-
   cloudFoundryDeploy:
-    enabled: true
-    cfApiEndpoint: "https://api.cf.us10-001.hana.ondemand.com/"
+    cfApiEndpoint: "https://api.cf.us10-001.hana.ondemand.com"
     cfOrg: "ec4edb2ctrial"
     cfSpace: "dev"
