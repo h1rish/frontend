@@ -1,0 +1,27 @@
+_schema-version: "3.2"
+ID: react-btp-deployer
+version: 1.0.0
+
+modules:
+  - name: react-ui-module
+    type: html5
+    path: .
+    build-parameters:
+      build-result: build
+      builder: custom
+      commands:
+        - npm install
+        - npm run build
+    requires:
+      - name: ui5-repo-host-reference
+
+resources:
+  - name: ui5-repo-host-reference
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
+      # This is the actual name of your instance in the BTP Cockpit
+      resource-name: html5-apps-repo 
+    metadata:
+      active: true
