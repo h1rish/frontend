@@ -1,6 +1,6 @@
 _schema-version: "3.2"
-ID: react-btp-deployer
-version: 1.0.0
+ID: react-btp-app
+version: 0.0.1
 
 modules:
   - name: react-ui-module
@@ -12,8 +12,6 @@ modules:
       commands:
         - npm install
         - npm run build
-    requires:
-      - name: ui5-repo-host-reference
 
 resources:
   - name: ui5-repo-host-reference
@@ -21,7 +19,3 @@ resources:
     parameters:
       service: html5-apps-repo
       service-plan: app-host
-      # This is the actual name of your instance in the BTP Cockpit
-      resource-name: html5-apps-repo 
-    metadata:
-      active: true
