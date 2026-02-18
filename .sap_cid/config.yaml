@@ -3,9 +3,10 @@ stages:
     buildTool: mta
     buildToolVersion: MBTJ17N22
   release:
-    deployTargets:
-      - type: 'cloudFoundry'
-        apiEndpoint: 'https://api.cf.us10-001.hana.ondemand.com/'
-        org: 'ec4edb2ctrial'
-        space: 'dev'
-        credentialsId: 'sapcreds'
+    cloudFoundryDeploy: true
+    # Note: No 'cf' prefix and no nesting. 
+    # This is the "Flat" V3 schema.
+    apiEndpoint: 'https://api.cf.us10-001.hana.ondemand.com/'
+    org: 'ec4edb2ctrial'
+    space: 'dev'
+    credentialsId: 'sapcreds'
