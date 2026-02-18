@@ -1,9 +1,9 @@
 _schema-version: "3.2"
-ID: react-btp-project-v4
-version: 0.0.1
+ID: react-final-deploy-check # New ID
+version: 1.0.0
 
 modules:
-  - name: react-ui-module
+  - name: react-ui-app-module # New Module Name
     type: html5
     path: app
     build-parameters:
@@ -13,21 +13,21 @@ modules:
         - npm install
         - npm run build
     requires:
-      - name: html5-repo-host-v3
+      - name: repo-host-final-service
 
   - name: react-app-content-deployer
     type: com.sap.application.content
     path: .
     requires:
-      - name: html5-repo-host-v3
+      - name: repo-host-final-service
         parameters:
           content-target: true
 
 resources:
-  - name: html5-repo-host-v3
+  - name: repo-host-final-service # New Resource Name
     type: org.cloudfoundry.managed-service
     parameters:
       service: html5-apps-repo
       service-plan: app-host
       config:
-        app-name: my-final-react-app
+        app-name: final-react-btp-app # New App Name
