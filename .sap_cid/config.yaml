@@ -1,16 +1,17 @@
-# .pipeline/config.yml
-
 general:
   verbose: true
 
 stages:
   build:
-    buildTool: 'npm'           # Changed from mta to npm for a React app
-  
+    mtaBuild:
+      buildTarget: 'cloud'
+
   release:
     cloudFoundryDeploy:
-      apiEndpoint: 'https://api.cf.us10-001.hana.ondemand.com/'
-      org: 'ec4edb2ctrial'     # Your trial org ID
-      space: 'dev'
-      credentialsId: 'sapcreds'
-      manifest: 'manifest.yml' # Explicitly telling it to use your new file
+      deployTool: 'mta'
+      mtaPath: 'mta_archives/react-final-deploy-check_1.0.0.mtar'
+      cloudFoundry:
+        apiEndpoint: 'https://api.cf.us10-001.hana.ondemand.com'
+        org: 'ec4edb2ctrial'
+        space: 'dev'
+        credentialsId: 'sapcreds'
