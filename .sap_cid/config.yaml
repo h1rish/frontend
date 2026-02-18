@@ -1,9 +1,10 @@
 stages:
   build:
     buildTool: mta
+    buildToolVersion: N22 # Required property fix
   release:
-    cloudFoundryDeploy: true
-    cfCredentialsId: 'sapcreds'
-    cfApiEndpoint: 'https://api.cf.us10-001.hana.ondemand.com/'
-    cfOrg: 'ec4edb2ctrial'
-    cfSpace: 'dev'
+    cloudFoundry:
+      apiEndpoint: 'https://api.cf.us10-001.hana.ondemand.com/'
+      org: 'ec4edb2ctrial'
+      space: 'dev'
+      credentialsId: 'sapcreds'
