@@ -1,9 +1,9 @@
 _schema-version: "3.2"
-ID: my-react-project-unique
+ID: react-btp-deploy-2026
 version: 0.0.1
 
 modules:
-  # 1. The Build Module: Installs dependencies and runs the React build
+  # 1. The React Build Module
   - name: react-ui-module
     type: html5
     path: app
@@ -15,8 +15,10 @@ modules:
         - npm run build
     requires:
       - name: ui5-repo-host-reference
+    parameters:
+      content-target: true
 
-  # 2. The Deployer Module: Physically pushes the files to the BTP Repo
+  # 2. The Content Deployer (The "Worker" that moves the files)
   - name: react-app-content-deployer
     type: com.sap.application.content
     path: app
@@ -26,7 +28,7 @@ modules:
           content-target: true
 
 resources:
-  # 3. The Service: The "Locker" where your app is stored
+  # 3. The Service Locker (The Repository)
   - name: ui5-repo-host-reference
     type: org.cloudfoundry.managed-service
     parameters:
