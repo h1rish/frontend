@@ -1,7 +1,0 @@
-{
-  "name": "frontend-root",
-  "private": true,
-  "devDependencies": {
-    "mbt": "^1.2.18"
-  }
-}
