@@ -1,37 +1,30 @@
 _schema-version: "3.2"
-ID: react-btp-v2
-version: 0.0.1
+ID: react-app-v2
+version: 1.0.0
 
 modules:
   - name: react-ui-module
     type: html5
-    path: app
+    # Point directly to the build folder you pushed to skip the 7-minute wait
+    path: app/build 
     build-parameters:
-      build-result: build
       builder: custom
-      commands:
-        - npm install
-        - npm run build
-    requires:
-      - name: ui5-repo-host-reference
-    parameters:
-      # THIS IS MANDATORY TO SHOW UP IN THE LIST
-      content-target: true
+      commands: [] # Skips npm install/build in the cloud
 
   - name: react-app-content-deployer
     type: com.sap.application.content
     path: .
     requires:
-      - name: ui5-repo-host-reference
+      - name: html5-repo-host-v2
         parameters:
           content-target: true
 
 resources:
-  - name: ui5-repo-host-reference
+  - name: html5-repo-host-v2
     type: org.cloudfoundry.managed-service
     parameters:
       service: html5-apps-repo
       service-plan: app-host
       config:
-        # This name must match the ID in your manifest.json
-        app-name: myreactappv2
+        # This is the name that will appear in the HTML5 Applications list
+        app-name: my-react-btp-app
