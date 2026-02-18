@@ -3,6 +3,7 @@ ID: my-react-project-unique
 version: 0.0.1
 
 modules:
+  # 1. The Build Module: Installs dependencies and runs the React build
   - name: react-ui-module
     type: html5
     path: app
@@ -15,16 +16,17 @@ modules:
     requires:
       - name: ui5-repo-host-reference
 
-  # --- ADD THIS MODULE BELOW ---
+  # 2. The Deployer Module: Physically pushes the files to the BTP Repo
   - name: react-app-content-deployer
     type: com.sap.application.content
-    path: .
+    path: app
     requires:
       - name: ui5-repo-host-reference
         parameters:
           content-target: true
 
 resources:
+  # 3. The Service: The "Locker" where your app is stored
   - name: ui5-repo-host-reference
     type: org.cloudfoundry.managed-service
     parameters:
