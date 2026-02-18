@@ -5,7 +5,7 @@ version: 1.0.0
 modules:
   - name: react-ui-module
     type: html5
-    path: .
+    path: app
     build-parameters:
       build-result: build
       builder: custom
