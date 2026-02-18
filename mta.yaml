@@ -1,9 +1,8 @@
 _schema-version: "3.2"
-ID: react-btp-deploy-2026
+ID: react-btp-project
 version: 0.0.1
 
 modules:
-  # 1. The React Build Module
   - name: react-ui-module
     type: html5
     path: app
@@ -15,22 +14,21 @@ modules:
         - npm run build
     requires:
       - name: ui5-repo-host-reference
-    parameters:
-      content-target: true
 
-  # 2. The Content Deployer (The "Worker" that moves the files)
   - name: react-app-content-deployer
     type: com.sap.application.content
-    path: app
+    path: .
     requires:
       - name: ui5-repo-host-reference
         parameters:
           content-target: true
 
 resources:
-  # 3. The Service Locker (The Repository)
   - name: ui5-repo-host-reference
     type: org.cloudfoundry.managed-service
     parameters:
       service: html5-apps-repo
       service-plan: app-host
+      config:
+        # THIS IS WHAT MAKES IT SHOW UP IN THE LIST
+        app-name: myreactapp
