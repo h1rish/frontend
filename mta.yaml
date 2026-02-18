@@ -1,5 +1,5 @@
 _schema-version: "3.2"
-ID: react-btp-project
+ID: react-btp-v2
 version: 0.0.1
 
 modules:
@@ -34,4 +34,4 @@ resources:
       service-plan: app-host
       config:
         # This name must match the ID in your manifest.json
-        app-name: myreactapp
+        app-name: myreactappv2
